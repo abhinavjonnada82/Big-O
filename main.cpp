@@ -69,7 +69,7 @@ int main()
 
  buble.test(array, 0, 777);
    cout << endl << endl;
-   buble.testPrint(array);
+   buble.testPrint(array);00
 
 
 
