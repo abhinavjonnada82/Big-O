@@ -9,22 +9,5 @@ struct quick_arr;
 	string str;
 }
 
-class Quick_sort
-
-{
-	int mid;
-	int left;
-	int right;
-	quick_arr array1[];
-    public:
-    Quick_sort();
-    void inita_arra(int data);
-    void assign_data(int index, int num_data, string str_data);
-    void quick_sort();
-    void exchange(int *xp, int *yp);
-    void print();
-    
-};
-
-
+int quick_sort(list arr[], int left, int right int last, int & count);
 

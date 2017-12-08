@@ -2,18 +2,18 @@
 #include <ctime>
 #include <cstdlib>
 #include <string>
+#include "data.cpp"
 
 
 using namespace std;
 
+void swap_data(list &x, list &y);
+void print(list arr[], int n);
+
 const int case1 = 50;
 //const int case2 = 5000;
 //const int case3 = 10000;
-const char alphanum[] =
-	 "0123456789"
-	 "!@#$%^&*"
-	 "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	 "abcdefghijklmnopqrstuvwxyz";
+c
 
 int string_length = sizeof(alphanum) - 1;
 
@@ -29,49 +29,175 @@ int gen_RandNum()
 	return rand() % 100;
 }
 
-struct list
-{
-	int key;
-	string rand_str;
-};
 
 int main()
 {
+    ifstream infile;
+    ofstream outfile;
+    ofstream sortedfile;
     
+    string random_char = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	
 	
 	list array[case1];
 	
     /* initialize random seed: */
     srand (time(NULL));
     
-    bubble.init_arra(case1);
+    int key = 0;
+    string str = "abcd";
+    
+    outfile.open("50.txt", ios::trunc);
+    for (int i = 0; i< 50; i++)
+    {
+		key = rand() % 101;
+		for (int j = 0; j<5; j++)
+		{
+			str[j] = random_char [rand() % 52];
+		}
+		outfile << key << ""<< str << end;
+	}
+	
+	outfile.open("5000.txt", ios::trunc);
+    for (int i = 0; i< 5000; i++)
+    {
+		key = rand() % 101;
+		for (int j = 0; j<5; j++)
+		{
+			str[j] = random_char [rand() % 52];
+		}
+		outfile << key << ""<< str << end;
+	}
+	
+	outfile.open("10000.txt", ios::trunc);
+    for (int i = 0; i< 10000; i++)
+    {
+		key = rand() % 101;
+		for (int j = 0; j<5; j++)
+		{
+			str[j] = random_char [rand() % 52];
+		}
+		outfile << key << ""<< str << end;
+	}
+	
+	/////////////////////////////////////////////////////////////////////////////
+    infile.open ("50.txt");
+    list* array50 = new list[50];
+    for (int i = 0; i < 50 ; i++)
+    {
+		infile >> array50[i].key;
+		infile >> array50[i].str;
+	}
+	infile.close();
+	
+	infile.open ("5000.txt");
+    list* array5000 = new list[5000];
+    for (int i = 0; i < 5000 ; i++)
+    {
+		infile >> array5000[i].key;
+		infile >> array5000[i].str;
+	}
+	infile.close();
+	
+	infile.open ("10000.txt");
+    list* array10000 = new list[10000];
+    for (int i = 0; i < 10000 ; i++)
+    {
+		infile >> array10000[i].key;
+		infile >> array10000[i].str;
+	}
+	infile.close();
+	
+	infile.open ("10000.txt");
+    list* array10000 = new list[10000];
+    for (int i = 0; i < 10000 ; i++)
+    {
+		infile >> array10000[i].key;
+		infile >> array10000[i].str;
+	}
+	infile.close();
+	
+	infile.open ("10000sorted.txt");
+    list* array10000_sorted = new list[10000];
+    for (int i = 0; i < 10000 ; i++)
+    {
+		infile >> array10000_sorted[i].key;
+		infile >> array10000_sorted[i].str;
+	}
+	infile.close();
 
-  /* generate number between 0 and 50: */
-     
-     for (int i = 0; i<=case1; i++)
+
+
+  
+
+  /* creating another array to hold unsorted values */
+     list* array50_copy = new list[50];
+     for (int i = 0; i<=50; i++)
      {    
-		 array[i].key = gen_RandNum();
-		 array[i].rand_str = gen_RandStr();
+		 array50_copy[i].key = array50[i].key;
+		 array50_copy[i].str = array50[i].str;
 	 }
-	  
-	 //print out the array
 	 
-	 for (int i = 0; i<=case1; i++)
+	 cout << "Sorting on 50 data entries." << endl;
+	 //Selection sort on array50
+	 selection_sort(array50, 49);
+	 //outputting to file
+	 for (int i = 0; i < 50; i++)
 	 {
-		 cout<<"print random numbers"<<array[i].key<<endl;
-		 cout<<"print random string"<<array[i].rand_str<<endl;
+		 outfile << array50[i].key << "" << array50[i].str << endl;
 	 }
+	 outfile.close();
+	 
+	 cout<<"--------------------------------------------------------------------------------"<<endl;
+	 
+	 
+	 cout << "Selection sort has been successfull" << endl;
+	 cout << "Preparing Bubble sort" << endl;
+	 
+	 for (int i = 0; i<=50; i++)
+     {    
+		 array50_copy[i].key = array50[i].key;
+		 array50_copy[i].str = array50[i].str;
+	 }
+	  bubble_sort(array50, 49);
+	  outfile.open("buba50.txt", ios::trunc); 
+	 //print out the array
+	 for (int i = 0; i< 50; i++)
+	 {
+		 outfile << array50[i].key<< "" << array50[i].str << endl;
+		 
+	 }
+	 outfile.close();
+	
+     cout<<"--------------------------------------------------------------------------------"<<endl;
+	 cout << "Bubble sort has been successfull" << endl;
+	 cout << "Preparing Quick sort" << endl;
+	  for (int i = 0; i < 50; i++)
+   {
+	   array50[i].key = array50Copy[i].key;
+	   array50[i].str = array50Copy[i].str;
+   }
+
+	 //Quick Sort on array50
+	 int count;
+	 count = 0;
+	 
+	 
+	 quick_sort(array50, 0, 49, count);
+	 outfile.open("quick50.txt", ios::trunc); 
+	 //outputting to file
+	 for (int i = 0; i < 50; i++)
+	 {
+		 outfile << array50[i].key << "" << array50[i].str << endl;
+	 }
+	 outfile.close();
+	 cout << "Quick sort has been successfull" << endl;
+	 
+	 
+	 
 	 
 	 
 	 return 0;
 	 
 }
-
- buble.test(array, 0, 777);
-   cout << endl << endl;
-   buble.testPrint(array);00
-
-
-
-
 

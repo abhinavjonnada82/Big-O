@@ -3,8 +3,8 @@
 using namespace std;
 
 
-#ifndef __SELECTION__
-#define __SELECTION__
+#ifndef __INSERTION__
+#define __INSERTION__
 
 struct quick_arr;
 {
@@ -13,7 +13,7 @@ struct quick_arr;
 }
 
 int selection_sort(int array[], int last);
-void exchange(int *xp; int *yp);
 
 
 #endif
+
